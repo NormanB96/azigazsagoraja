@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Az Igazság Órája</title>
+
 <style>
   body {
     display: flex;
@@ -11,90 +12,99 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    margin: 0;
+    padding: 20px;
     font-family: Arial, sans-serif;
-    background-color: #000;
+    background: #000;
     color: #fff;
     text-align: center;
-    padding: 20px;
-    margin: 0;
   }
 
   h1 {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 6vw; /* méret a képernyő szélességéhez igazítva */
+    font-size: 6vw;
     margin: 0;
-    white-space: nowrap; /* egy sorban maradjon */
+    white-space: nowrap;
   }
 
   #timer {
+    font-size: 10vw;
     font-weight: bold;
-    font-size: 10vw; /* nagy, reszponzív */
     margin: 20px 0;
-    white-space: nowrap; /* egy sorban */
+    white-space: nowrap;
   }
 
   .text {
-    font-size: 3vw; /* reszponzív, kisebb a drámai szöveg */
+    font-size: 3vw;
     color: #ccc;
-    max-width: 95vw; /* mobilon se törjön ki */
+    max-width: 95vw;
     margin-bottom: 20px;
   }
 
   #btc {
-    font-size: 2.5vw;
     margin-top: 10px;
-    color: #fff;
-    white-space: nowrap;
-    overflow-x: auto; /* hosszú cím esetén görgethető */
-    -webkit-overflow-scrolling: touch; /* sima görgetés iOS-en */
+    max-width: 95vw;
   }
 
-  #btc strong:first-child {
-    color: #f7931A; /* BTC felirat narancssárga */
+  #btc-label {
+    color: #f7931A;
+    font-size: 2.8vw;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  #btc-address {
+    font-size: 2.6vw;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   #qr {
-    margin-top: 10px;
+    margin-top: 12px;
     width: 40vw;
     max-width: 200px;
-    height: auto;
-    background-color: #fff;
+    background: #fff;
     padding: 5px;
   }
 </style>
 </head>
+
 <body>
 
 <h1>AZ IGAZSÁG ÓRÁJA</h1>
 
-<div id="timer">--:--:--</div>
+<div id="timer">--</div>
 
-<div class="text" id="message">
+<div class="text">
   Ne maradj ki! Támogasd, hogy az óra tovább ketyeghessen, és az elért fordulóponton se álljon meg!
 </div>
 
 <div id="btc">
-  <strong>BTC cím:</strong> <strong>32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx</strong>
+  <div id="btc-label">BTC cím:</div>
+  <div id="btc-address">32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx</div>
 </div>
 
-<img id="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx" alt="Scan to pay BTC">
+<img id="qr"
+     src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx"
+     alt="Scan to pay BTC">
 
 <script>
 const timer = document.getElementById("timer");
 const targetDate = new Date("2026-04-12T22:00:00+02:00").getTime();
 
 function updateTimer() {
-  const now = new Date().getTime();
-  let diff = targetDate - now;
-  const totalSeconds = Math.floor(Math.abs(diff) / 1000);
+  const now = Date.now();
+  const diff = targetDate - now;
+  const s = Math.floor(Math.abs(diff) / 1000);
 
-  const days = Math.floor(totalSeconds / (24*60*60));
-  const hours = Math.floor((totalSeconds % (24*60*60)) / (60*60));
-  const minutes = Math.floor((totalSeconds % (60*60)) / 60);
-  const seconds = totalSeconds % 60;
+  const d = Math.floor(s / 86400);
+  const h = Math.floor((s % 86400) / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
 
-  timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  timer.textContent = `${d}d ${h}h ${m}m ${sec}s`;
 }
 
 setInterval(updateTimer, 1000);
