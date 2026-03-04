@@ -10,42 +10,56 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     font-family: Arial, sans-serif;
-    background-color: #000; /* fekete háttér */
-    color: #fff; /* alap szöveg */
+    background-color: #000;
+    color: #fff;
     text-align: center;
     padding: 20px;
-  }
-  h1 {
-    text-transform: uppercase; /* csupa nagybetű */
-    font-size: 3em;
     margin: 0;
+  }
+
+  h1 {
+    text-transform: uppercase;
     font-weight: bold;
+    font-size: 6vw; /* méret a képernyő szélességéhez igazítva */
+    margin: 0;
+    white-space: nowrap; /* egy sorban maradjon */
   }
+
   #timer {
-    font-size: 4em; /* nagyobb */
-    font-weight: bold; /* vastag */
+    font-weight: bold;
+    font-size: 10vw; /* nagy, reszponzív */
     margin: 20px 0;
-    color: #fff;
+    white-space: nowrap; /* egy sorban */
   }
+
   .text {
-    font-size: 1.3em; /* kicsit kisebb */
-    color: #ccc; /* világos szürke */
-    max-width: 600px;
+    font-size: 3vw; /* reszponzív, kisebb a drámai szöveg */
+    color: #ccc;
+    max-width: 95vw; /* mobilon se törjön ki */
     margin-bottom: 20px;
   }
+
   #btc {
-    font-size: 1.3em;
+    font-size: 2.5vw;
     margin-top: 10px;
-    word-break: break-all;
     color: #fff;
+    white-space: nowrap;
+    overflow-x: auto; /* hosszú cím esetén görgethető */
+    -webkit-overflow-scrolling: touch; /* sima görgetés iOS-en */
   }
+
+  #btc strong:first-child {
+    color: #f7931A; /* BTC felirat narancssárga */
+  }
+
   #qr {
     margin-top: 10px;
-    width: 200px;
-    height: 200px;
-    background-color: #fff; /* QR fehér háttér */
+    width: 40vw;
+    max-width: 200px;
+    height: auto;
+    background-color: #fff;
     padding: 5px;
   }
 </style>
@@ -53,6 +67,7 @@
 <body>
 
 <h1>AZ IGAZSÁG ÓRÁJA</h1>
+
 <div id="timer">--:--:--</div>
 
 <div class="text" id="message">
@@ -60,8 +75,7 @@
 </div>
 
 <div id="btc">
-  <strong style="color: #f7931A;">BTC cím:</strong><br>
-  <strong>32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx</strong>
+  <strong>BTC cím:</strong> <strong>32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx</strong>
 </div>
 
 <img id="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx" alt="Scan to pay BTC">
