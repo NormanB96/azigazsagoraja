@@ -53,21 +53,9 @@
   #btc {
     margin-top: 20px;
     max-width: 95vw;
-  }
-
-  #btc-label {
-    color: #f7931A;
-    font-size: 2.8vw;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 4px;
-  }
-
-  #btc-address {
-    font-size: 2.6vw;
-    white-space: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   #qr {
@@ -76,6 +64,20 @@
     background: #fff;
     padding: 5px;
     margin-bottom: 10px;
+  }
+
+  #btc-label {
+    color: #f7931A;
+    font-size: 2.8vw;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  #btc-address {
+    font-size: 2.6vw;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 </style>
 </head>
@@ -92,15 +94,13 @@
 </div>
 
 <div id="btc">
-
-  <!-- QR KÓD – CSAK A CÍM, SEMMI MÁS -->
+  <!-- QR KÓD – CSAK A BTC CÍM, NINCS bitcoin: előtag -->
   <img id="qr"
        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx"
        alt="BTC QR">
-
+       
   <div id="btc-label">BTC cím:</div>
   <div id="btc-address">32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx</div>
-
 </div>
 
 <script>
