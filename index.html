@@ -13,18 +13,25 @@
     height: 100vh;
     font-family: Arial, sans-serif;
     background-color: #000; /* fekete háttér */
-    color: #fff; /* fehér szöveg */
+    color: #fff; /* alap szöveg */
     text-align: center;
     padding: 20px;
   }
-  #timer {
+  h1 {
+    text-transform: uppercase; /* csupa nagybetű */
     font-size: 3em;
+    margin: 0;
+    font-weight: bold;
+  }
+  #timer {
+    font-size: 4em; /* nagyobb */
+    font-weight: bold; /* vastag */
     margin: 20px 0;
     color: #fff;
   }
   .text {
-    font-size: 1.5em;
-    color: #fff;
+    font-size: 1.3em; /* kicsit kisebb */
+    color: #ccc; /* világos szürke */
     max-width: 600px;
     margin-bottom: 20px;
   }
@@ -45,17 +52,15 @@
 </head>
 <body>
 
-<h1>Az Igazság Órája</h1>
+<h1>AZ IGAZSÁG ÓRÁJA</h1>
 <div id="timer">--:--:--</div>
 
 <div class="text" id="message">
-  Ez az óra figyel. Minden perc, ami eltelik, emlékeztet az ígéretekre.<br>
-  Támogasd, hogy az óra tovább ketyegjen, és az elért fordulóponton se álljon meg.<br>
-  Ne maradj ki!
+  Ne maradj ki! Támogasd, hogy az óra tovább ketyeghessen, és az elért fordulóponton se álljon meg!
 </div>
 
 <div id="btc">
-  <strong style="color: #FFD700;">BTC cím:</strong><br>
+  <strong style="color: #f7931A;">BTC cím:</strong><br>
   <strong>32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx</strong>
 </div>
 
