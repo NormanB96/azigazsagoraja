@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Az Igazság Órája</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px;
+  }
+  #timer {
+    font-size: 3em;
+    margin: 20px 0;
+    color: #222;
+  }
+  .text {
+    font-size: 1.5em;
+    color: #555;
+    max-width: 600px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Az Igazság Órája</h1>
+<div id="timer">--:--:--</div>
+<div class="text" id="message">Az óra 2026. április 12, 22:00-ig számol vissza.</div>
+
+<script>
+const targetDate = new Date("2026-04-12T22:00:00").getTime(); // Április 12, 22:00
+const timer = document.getElementById("timer");
+const message = document.getElementById("message");
+
+function updateTimer() {
+  const now = new Date().getTime();
+  let diff = targetDate - now;
+
+  if (diff >= 0) {
+    // Visszaszámlálás
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    message.innerHTML = "Az óra 2026. április 12, 22:00-ig számol vissza.";
+  } else {
+    // Felfelé számolás
+    diff = Math.abs(diff);
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    message.innerHTML = "Amikor eléri a választási eredményhirdetés idejét, az óra elindul felfelé. Az ígéretek nem évülnek el.";
+  }
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+</script>
+
+</body>
+</html>
