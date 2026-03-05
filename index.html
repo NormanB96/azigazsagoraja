@@ -5,93 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Az Igazság Órája</title>
 
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJMKGJ3TPD"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XJMKGJ3TPD');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XJMKGJ3TPD');
 </script>
 
 <style>
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: #000;
-    color: #fff;
-    text-align: center;
-  }
 
-  h1 {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 8vw;
-    margin: 0;
-    white-space: nowrap;
-  }
+body{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+margin:0;
+padding:20px;
+font-family:Arial, sans-serif;
+background:#000;
+color:#fff;
+text-align:center;
+}
 
-  .subtitle {
-    font-size: 3vw;
-    color: #ccc;
-    margin-top: 6px;
-    margin-bottom: 10px;
-    white-space: nowrap;
-  }
+h1{
+text-transform:uppercase;
+font-weight:bold;
+font-size:8vw;
+margin:0;
+white-space:nowrap;
+}
 
-  #timer {
-    font-size: 10vw;
-    font-weight: bold;
-    margin: 20px 0;
-    padding: 15px 25px;
-    border: 3px solid #ccc;
-    border-radius: 15px;
-    white-space: nowrap;
-  }
+.subtitle{
+font-size:3vw;
+color:#999;
+margin-top:6px;
+margin-bottom:15px;
+white-space:nowrap;
+}
 
-  .text {
-    font-size: 3vw;
-    color: #ccc;
-    max-width: 95vw;
-    margin-bottom: 20px;
-  }
+#timer{
+font-size:10vw;
+font-weight:bold;
+margin:20px 0;
+padding:15px 30px;
+border:3px solid #888;
+border-radius:18px;
+white-space:nowrap;
+}
 
-  #btc {
-    margin-top: 20px;
-    max-width: 95vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.text{
+font-size:2.8vw;
+color:#aaa;
+max-width:900px;
+margin-bottom:40px;
+}
 
-  #btc-label {
-    color: #f7931A;
-    font-size: 3vw;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
+#btc{
+display:flex;
+flex-direction:column;
+align-items:center;
+max-width:95vw;
+}
 
-  #btc-address {
-    font-size: 2.8vw;
-    white-space: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 40px;
-  }
+#btc-label{
+color:#f7931A;
+font-size:3vw;
+font-weight:bold;
+}
 
-  #qr {
-    width: 40vw;
-    max-width: 200px;
-    background: #fff;
-    padding: 5px;
-  }
+#btc-address{
+font-size:2.6vw;
+word-break:break-all;
+margin-top:4px;
+}
+
+#qr{
+margin-top:40px;
+width:200px;
+height:200px;
+background:#fff;
+padding:8px;
+border-radius:10px;
+}
+
 </style>
 </head>
 
@@ -100,41 +99,55 @@
 <h1>AZ IGAZSÁG ÓRÁJA</h1>
 <div class="subtitle">2026. április 12. 22:00</div>
 
-<div id="timer">--</div>
+<div id="timer"></div>
 
 <div class="text">
-  Ne maradj ki! Támogasd, hogy az óra tovább ketyeghessen, és az elért fordulóponton se álljon meg!
-  Az óra a fordulóponton újraindul és számolja az új rendszer korát, az óra nem felejti el az ígéreteket sem!
+Ne maradj ki! Támogasd, hogy az óra tovább ketyeghessen, és az elért fordulóponton se álljon meg!
+Az óra a fordulóponton újraindul és számolja az új rendszer korát, az óra nem felejti el az ígéreteket sem!
 </div>
 
 <div id="btc">
-  <div id="btc-label">BTC cím:</div>
-  <div id="btc-address">32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx</div>
 
-  <img id="qr"
-       src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=32zAVPdXpWVtsYGuukPrmeKqGShiiRkVsx"
-       alt="BTC QR">
+<div id="btc-label">BTC cím:</div>
+<div id="btc-address">
+bc1q27eyh4c5vjkf2h7ucxywxq9kuup7ajwwwzf9rp
+</div>
+
+<img id="qr"
+src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bc1q27eyh4c5vjkf2h7ucxywxq9kuup7ajwwwzf9rp"
+alt="BTC QR">
+
 </div>
 
 <script>
-const timer = document.getElementById("timer");
+
 const targetDate = new Date("2026-04-12T22:00:00+02:00").getTime();
 
-function updateTimer() {
-  const now = Date.now();
-  const diff = targetDate - now;
-  const s = Math.floor(Math.abs(diff) / 1000);
+function updateTimer(){
 
-  const d = Math.floor(s / 86400);
-  const h = Math.floor((s % 86400) / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const sec = s % 60;
+const now = new Date().getTime();
+let diff = targetDate - now;
 
-  timer.textContent = `${d}d ${h}h ${m}m ${sec}s`;
+let direction = -1;
+
+if(diff < 0){
+diff = Math.abs(diff);
+direction = 1;
 }
 
-setInterval(updateTimer, 1000);
+const days = Math.floor(diff/(1000*60*60*24));
+const hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((diff%(1000*60*60))/(1000*60));
+const seconds = Math.floor((diff%(1000*60))/1000);
+
+document.getElementById("timer").innerHTML =
+days + " nap " + hours + " óra " + minutes + " perc " + seconds + " mp";
+
+}
+
+setInterval(updateTimer,1000);
 updateTimer();
+
 </script>
 
 </body>
